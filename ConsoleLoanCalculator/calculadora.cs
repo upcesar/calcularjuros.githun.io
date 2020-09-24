@@ -14,6 +14,7 @@ namespace Financiamento_2
             double capital;
             double taxa;
             double tempo;
+
             Console.Write("Insira o capital: ");
             capital = Convert.ToInt32(Console.ReadLine());
 
@@ -23,14 +24,32 @@ namespace Financiamento_2
             Console.Write("Insira o tempo do financiamento em mêses: ");
             tempo = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Valor da prestação ao mês: R$" + CalcularJuros(capital, taxa, tempo) + " em " + tempo + "X");  // Output
+            if (!ValidarQuantidadeParcelas(tempo))
+            {
+                return;
+            }
+
+            var parcela = CalcularJuros(capital, taxa, tempo);
+
+            Console.WriteLine("Valor da prestação ao mês: R$" + parcela + " em " + tempo + "X");  // Output
 
             Console.ReadLine();
         }
+
+        private static bool ValidarQuantidadeParcelas(double tempo)
+        {
+            if (tempo < 12 || tempo < 48)
+            {
+                Console.WriteLine("Quantidade de parcelas Inválidas");         // Output de tempo inválidos
+                return false;
+            }
+            return true;
+        }
+
         public static double CalcularJuros(double capital, double taxa, double tempo)  // Função CalcularJuros
         {
-            double resultado = (((capital / 100) * taxa)+(capital / tempo));  //Cálculo da taxa
-          
+            double resultado = (((capital / 100) * taxa) + (capital / tempo));  //Cálculo da taxa
+
             return resultado;
         }
     }
