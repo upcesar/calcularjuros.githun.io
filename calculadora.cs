@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,32 +8,31 @@ namespace Financiamento_2
 {
     class Program
     {
-            static void Main(string[] args)
-            {
+        static void Main(string[] args)
+        {
+            //Variáveis input
             double capital;
             double taxa;
             double tempo;
-            Console.WriteLine("Insira o capital: ");
+            Console.Write("Insira o capital: ");
             capital = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Insira a taxa de juros (%): ");
+            Console.Write("Insira a taxa de juros (%): ");
             taxa = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Insira o tempo do financiamento em mêses: ");
+            Console.Write("Insira o tempo do financiamento em mêses: ");
             tempo = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Soma: " + CalcularJuros(capital, taxa, tempo));
+            Console.WriteLine("Valor da prestação ao mês: R$" + CalcularJuros(capital, taxa, tempo) + " em " + tempo + "X");  // Output
 
             Console.ReadLine();
-            }
-
-            public static double CalcularJuros(double capital, double taxa, double tempo)  // Função CalcularJuros
-            {
-
-            double resultado = (capital/100) * taxa;  //Cálculo 
-
+        }
+        public static double CalcularJuros(double capital, double taxa, double tempo)  // Função CalcularJuros
+        {
+            double resultado = (((capital / 100) * taxa)+(capital / tempo));  //Cálculo da taxa
+          
             return resultado;
-            }
+        }
     }
 }
 
